@@ -12,6 +12,10 @@ class Post(BaseModel):
     published:bool=True
     rating: Optional[int]=None
 
+
+my_posts=[{"title":"title of post 1","content":"content of post 1","id":1},{"title":"fav food","content":"briyani","id":3}]
+
+
 @app.get("/")
 def root():
     return {"message":"Hello World"}
@@ -24,7 +28,8 @@ def get_posts():
 
 
 
-@app.post("/createposts")
-def create_posts(new_post:Post):
-    print(new_post)
-    return{"data":"new post created"}
+@app.post("/posts")
+def create_posts(post:Post):
+    print(post)
+    print(post.dict())
+    return{"data":post}
