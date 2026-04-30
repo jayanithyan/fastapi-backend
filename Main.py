@@ -8,6 +8,7 @@ from random import randrange
 
 app=FastAPI()
 
+
 class Post(BaseModel):
     title:str
     content:str
@@ -18,10 +19,13 @@ class Post(BaseModel):
 my_posts=[{"title":"title of post 1","content":"content of post 1","id":1},{"title":"fav food","content":"briyani","id":3}]
 
 
+
 def find_post(id):
     for p in my_posts:
         if p["id"]==id:
             return p
+
+
 
 @app.get("/")
 def root():
@@ -41,6 +45,13 @@ def create_posts(post:Post):
     post_dict["id"]=randrange(0,100000000)
     my_posts.append(post_dict)
     return{"data":post_dict}
+
+
+@app.get("/posts/latest")
+def get_latest_post():
+    post=my_posts[len(my_posts)-1]
+    return{"latest_post":post}
+
 
 
 @app.get("/posts/{id}")
