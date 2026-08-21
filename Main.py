@@ -211,3 +211,9 @@ def sort_posts_by_rating():
     )
 
     return {"data": results}
+def post_id_exists(id):
+    for post in my_posts:
+        if post["id"] == id:
+            return True
+
+    return False
