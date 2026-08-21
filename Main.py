@@ -110,3 +110,12 @@ def get_unpublished_posts():
             unpublished_posts.append(post)
 
     return {"data": unpublished_posts}
+@app.get("/posts/rating/{rating}")
+def get_posts_by_rating(rating: int):
+    posts = []
+
+    for post in my_posts:
+        if post.get("rating") == rating:
+            posts.append(post)
+
+    return {"data": posts}
