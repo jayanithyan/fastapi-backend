@@ -276,3 +276,24 @@ def rating_statistics():
         "count": len(ratings),
         "average": sum(ratings) / len(ratings)
     }
+@app.get("/posts/stats")
+def post_statistics():
+    published = 0
+    unpublished = 0
+    rated = 0
+
+    for post in my_posts:
+        if post.get("published", True):
+            published += 1
+        else:
+            unpublished += 1
+
+        if post.get("rating") is not None:
+            rated += 1
+
+    return {
+        "total_posts": len(my_posts),
+        "published_posts": published,
+        "unpublished_posts": unpublished,
+        "rated_posts": rated
+    }
