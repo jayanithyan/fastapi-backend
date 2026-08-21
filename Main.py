@@ -236,3 +236,14 @@ def check_title(title: str):
         "title": title,
         "available": not title_exists(title)
     }
+@app.get("/posts/stats/published")
+def published_count():
+    count = 0
+
+    for post in my_posts:
+        if post.get("published", True):
+            count += 1
+
+    return {
+        "published_posts": count
+    }
