@@ -101,3 +101,12 @@ def get_published_posts():
             published_posts.append(post)
 
     return {"data": published_posts}
+@app.get("/posts/unpublished")
+def get_unpublished_posts():
+    unpublished_posts = []
+
+    for post in my_posts:
+        if not post.get("published", True):
+            unpublished_posts.append(post)
+
+    return {"data": unpublished_posts}
