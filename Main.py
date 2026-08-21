@@ -119,3 +119,25 @@ def get_posts_by_rating(rating: int):
             posts.append(post)
 
     return {"data": posts}
+@app.get("/posts/top")
+def get_top_post():
+    if not my_posts:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No posts available"
+        )
+
+    rated_posts = [
+        post for post in my_posts
+        if post.get("rating") is not None
+    ]
+
+    if not rated_posts:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No rated posts available"
+        )
+
+    top_post = max(rated_posts, key=lambda post: post["rating"])
+
+    return {"data": top_post}
