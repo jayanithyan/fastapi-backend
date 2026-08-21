@@ -173,3 +173,10 @@ def get_posts_limit(limit: int = 10):
 @app.get("/posts/skip")
 def get_posts_skip(skip: int = 0):
     return {"data": my_posts[skip:]}
+@app.get("/posts/page")
+def get_posts_page(skip: int = 0, limit: int = 10):
+    return {
+        "data": my_posts[skip:skip + limit],
+        "skip": skip,
+        "limit": limit
+    }
