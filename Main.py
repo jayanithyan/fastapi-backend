@@ -224,3 +224,9 @@ def generate_post_id():
         new_id = randrange(0, 100000000)
 
     return new_id
+def title_exists(title):
+    for post in my_posts:
+        if post["title"].lower() == title.lower():
+            return True
+
+    return False
