@@ -247,3 +247,14 @@ def published_count():
     return {
         "published_posts": count
     }
+@app.get("/posts/stats/unpublished")
+def unpublished_count():
+    count = 0
+
+    for post in my_posts:
+        if not post.get("published", True):
+            count += 1
+
+    return {
+        "unpublished_posts": count
+    }
