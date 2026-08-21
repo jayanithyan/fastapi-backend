@@ -297,3 +297,13 @@ def post_statistics():
         "unpublished_posts": unpublished,
         "rated_posts": rated
     }
+@app.get("/posts/sort/title")
+def sort_posts_by_title():
+    results = sorted(
+        my_posts,
+        key=lambda post: post["title"].lower()
+    )
+
+    return {
+        "data": results
+    }
