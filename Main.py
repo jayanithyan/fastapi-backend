@@ -191,3 +191,14 @@ def filter_by_rating(min_rating: int):
             results.append(post)
 
     return {"data": results}
+@app.get("/posts/filter/rating")
+def filter_by_rating(min_rating: int):
+    results = []
+
+    for post in my_posts:
+        rating = post.get("rating")
+
+        if rating is not None and rating >= min_rating:
+            results.append(post)
+
+    return {"data": results}
