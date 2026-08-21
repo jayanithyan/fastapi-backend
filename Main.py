@@ -71,3 +71,6 @@ def delete_post(id:int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id: {id} was not found")
     my_posts.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+@app.get("/posts/count")
+def get_post_count():
+    return {"count": len(my_posts)}
