@@ -202,3 +202,12 @@ def filter_by_rating(min_rating: int):
             results.append(post)
 
     return {"data": results}
+@app.get("/posts/sort/rating")
+def sort_posts_by_rating():
+    results = sorted(
+        my_posts,
+        key=lambda post: post.get("rating") or 0,
+        reverse=True
+    )
+
+    return {"data": results}
