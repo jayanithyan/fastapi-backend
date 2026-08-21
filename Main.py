@@ -4,11 +4,11 @@ from fastapi import FastAPI,Response,status,HTTPException
 from fastapi.params import Body
 from pydantic import BaseModel
 from random import randrange
-
+from routers.posts import router as post_router
 
 
 app=FastAPI()
-
+app.include_router(post_router)
 
 class Post(BaseModel):
     title:str
