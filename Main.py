@@ -258,3 +258,21 @@ def unpublished_count():
     return {
         "unpublished_posts": count
     }
+@app.get("/posts/stats/rating")
+def rating_statistics():
+    ratings = []
+
+    for post in my_posts:
+        if post.get("rating") is not None:
+            ratings.append(post["rating"])
+
+    if not ratings:
+        return {
+            "count": 0,
+            "average": 0
+        }
+
+    return {
+        "count": len(ratings),
+        "average": sum(ratings) / len(ratings)
+    }
