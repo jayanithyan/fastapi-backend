@@ -141,3 +141,12 @@ def get_top_post():
     top_post = max(rated_posts, key=lambda post: post["rating"])
 
     return {"data": top_post}
+@app.get("/posts/title/{title}")
+def search_by_title(title: str):
+    results = []
+
+    for post in my_posts:
+        if title.lower() in post["title"].lower():
+            results.append(post)
+
+    return {"data": results}
