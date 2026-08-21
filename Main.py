@@ -170,3 +170,6 @@ def post_exists(id: int):
 @app.get("/posts/limit")
 def get_posts_limit(limit: int = 10):
     return {"data": my_posts[:limit]}
+@app.get("/posts/skip")
+def get_posts_skip(skip: int = 0):
+    return {"data": my_posts[skip:]}
