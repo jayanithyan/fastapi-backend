@@ -217,3 +217,10 @@ def post_id_exists(id):
             return True
 
     return False
+def generate_post_id():
+    new_id = randrange(0, 100000000)
+
+    while post_id_exists(new_id):
+        new_id = randrange(0, 100000000)
+
+    return new_id
