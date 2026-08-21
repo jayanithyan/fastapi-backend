@@ -307,3 +307,14 @@ def sort_posts_by_title():
     return {
         "data": results
     }
+@app.get("/posts/sort/title/reverse")
+def sort_posts_by_title_reverse():
+    results = sorted(
+        my_posts,
+        key=lambda post: post["title"].lower(),
+        reverse=True
+    )
+
+    return {
+        "data": results
+    }
