@@ -230,3 +230,9 @@ def title_exists(title):
             return True
 
     return False
+@app.get("/posts/title-available")
+def check_title(title: str):
+    return {
+        "title": title,
+        "available": not title_exists(title)
+    }
