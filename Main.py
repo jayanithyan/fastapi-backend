@@ -83,3 +83,12 @@ def get_latest_post():
         )
 
     return {"data": my_posts[-1]}
+@app.get("/posts/first")
+def get_first_post():
+    if not my_posts:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No posts available"
+        )
+
+    return {"data": my_posts[0]}
