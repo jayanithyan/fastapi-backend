@@ -150,3 +150,12 @@ def search_by_title(title: str):
             results.append(post)
 
     return {"data": results}
+@app.get("/posts/content/{keyword}")
+def search_by_content(keyword: str):
+    results = []
+
+    for post in my_posts:
+        if keyword.lower() in post["content"].lower():
+            results.append(post)
+
+    return {"data": results}
