@@ -167,3 +167,6 @@ def post_exists(id: int):
         "id": id,
         "exists": post is not None
     }
+@app.get("/posts/limit")
+def get_posts_limit(limit: int = 10):
+    return {"data": my_posts[:limit]}
