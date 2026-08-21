@@ -159,3 +159,11 @@ def search_by_content(keyword: str):
             results.append(post)
 
     return {"data": results}
+@app.get("/posts/{id}/exists")
+def post_exists(id: int):
+    post = find_post(id)
+
+    return {
+        "id": id,
+        "exists": post is not None
+    }
