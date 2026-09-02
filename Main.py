@@ -5,7 +5,7 @@ from fastapi.params import Body
 from schemas.post import Post
 from random import randrange
 from routers.posts import router as post_router
-from database.memory import my_posts
+from database.memory import my_posts,find_post
 
 app=FastAPI()
 app.include_router(post_router)
@@ -16,14 +16,6 @@ class Post(BaseModel):
     published:bool=True
     rating: Optional[int]=None
 
-
-
-
-
-def find_post(id):
-    for p in my_posts:
-        if p["id"]==id:
-            return p
 
 
 

@@ -10,3 +10,10 @@ my_posts = [
         "id": 3
     }
 ]
+
+
+def find_post(post_id: int):
+    for post in my_posts:
+        if post["id"] == post_id:
+            return post
+    return None
