@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from random import randrange
 from schemas.post import Post
+from fastapi import status, HTTPException
+
 
 router = APIRouter(
     prefix="/api/v1/posts",
@@ -44,4 +46,27 @@ def create_post(post: Post):
 
     return {
         "data": post_dict
+    }
+
+
+def find_post(post_id: int):
+    for post in my_posts:
+        if post["id"] == post_id:
+            return post
+
+    return None
+
+
+@router.get("/{id}")
+def get_post(id: int):
+    post = find_post(id)
+
+    if not post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"post with id: {id} was not found"
+        )
+
+    return {
+        "data": post
     }
