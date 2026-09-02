@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from random import randrange
+from schemas.post import Post
 
 router = APIRouter(
     prefix="/api/v1/posts",
@@ -31,4 +33,15 @@ my_posts = [
 def get_posts():
     return {
         "data": my_posts
+    }
+
+@router.post("/", status_code=201)
+def create_post(post: Post):
+    post_dict = post.dict()
+    post_dict["id"] = randrange(0, 100000000)
+
+    my_posts.append(post_dict)
+
+    return {
+        "data": post_dict
     }
