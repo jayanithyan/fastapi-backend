@@ -125,3 +125,16 @@ def get_published_posts():
     return {
         "data": published_posts
     }
+
+
+@router.get("/unpublished")
+def get_unpublished_posts():
+    unpublished_posts = []
+
+    for post in my_posts:
+        if not post.get("published", True):
+            unpublished_posts.append(post)
+
+    return {
+        "data": unpublished_posts
+    }
