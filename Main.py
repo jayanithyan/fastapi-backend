@@ -5,7 +5,7 @@ from fastapi.params import Body
 from schemas.post import Post
 from random import randrange
 from routers.posts import router as post_router
-
+from database.memory import my_posts
 
 app=FastAPI()
 app.include_router(post_router)
@@ -17,7 +17,6 @@ class Post(BaseModel):
     rating: Optional[int]=None
 
 
-my_posts=[{"title":"title of post 1","content":"content of post 1","id":1},{"title":"fav food","content":"briyani","id":3}]
 
 
 
