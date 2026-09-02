@@ -2,7 +2,7 @@ from typing import Optional
 from urllib import response
 from fastapi import FastAPI,Response,status,HTTPException
 from fastapi.params import Body
-from pydantic import BaseModel
+from schemas.post import Post
 from random import randrange
 from routers.posts import router as post_router
 
