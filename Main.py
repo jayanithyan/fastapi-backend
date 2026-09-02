@@ -5,7 +5,7 @@ from fastapi.params import Body
 from schemas.post import Post
 from random import randrange
 from routers.posts import router as post_router
-from database.memory import my_posts,find_post
+from database.memory import my_posts,find_post,my_posts
 
 app=FastAPI()
 app.include_router(post_router)
