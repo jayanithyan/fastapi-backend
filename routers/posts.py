@@ -100,3 +100,16 @@ def get_post_count():
     return {
         "count": len(my_posts)
     }
+
+
+@router.get("/latest")
+def get_latest_post():
+    if not my_posts:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No posts available"
+        )
+
+    return {
+        "data": my_posts[-1]
+    }
