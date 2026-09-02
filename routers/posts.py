@@ -113,3 +113,15 @@ def get_latest_post():
     return {
         "data": my_posts[-1]
     }
+
+@router.get("/published")
+def get_published_posts():
+    published_posts = []
+
+    for post in my_posts:
+        if post.get("published", True):
+            published_posts.append(post)
+
+    return {
+        "data": published_posts
+    }
