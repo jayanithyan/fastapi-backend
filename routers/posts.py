@@ -93,3 +93,10 @@ def delete_post(id: int):
     my_posts.pop(index)
 
     return Response(status_code=204)
+
+
+@router.get("/count")
+def get_post_count():
+    return {
+        "count": len(my_posts)
+    }
