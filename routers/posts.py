@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from random import randrange
 from schemas.post import Post
-from fastapi import status, HTTPException
+from fastapi import status, HTTPException, Response
 
 
 router = APIRouter(
@@ -70,3 +70,26 @@ def get_post(id: int):
     return {
         "data": post
     }
+
+
+def find_index_post(post_id: int):
+    for index, post in enumerate(my_posts):
+        if post["id"] == post_id:
+            return index
+
+    return None
+
+
+@router.delete("/{id}", status_code=204)
+def delete_post(id: int):
+    index = find_index_post(id)
+
+    if index is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"post with id: {id} was not found"
+        )
+
+    my_posts.pop(index)
+
+    return Response(status_code=204)
